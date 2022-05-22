@@ -1,0 +1,17 @@
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityLayer.dll
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityLayer.pdb
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityLayer.dll.config
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csprojAssemblyReference.cache
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations._22522.resources
+C:\Users\safak\source\repos\TaskManagement\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache

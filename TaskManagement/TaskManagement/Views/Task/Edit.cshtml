@@ -1,0 +1,107 @@
+﻿@model EntityLayer.Concrete.Task
+@{
+    ViewBag.Title = "İşi Düzenle";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+            </div>
+            <h4 class="page-title">Yeni İş</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("Edit", "Task", FormMethod.Post))
+                        {
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="task-title">Başlık</label>
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control form-control-light", @placeholder = "Başlık" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="task-priority2">İş Durumu</label>
+
+                                            @*@Html.DropDownList("MySkills", new List<SelectListItem>
+                                            {
+                                               new SelectListItem{ Text="ASP.NET MVC", Value = "1" },
+                                            })*@
+
+
+                                            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control form-control-ligh" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="task-priority2">Aciliyet Durumu</label>
+                                            @Html.DropDownList("UrgencyStatusId", null, htmlAttributes: new { @class = "form-control form-control-ligh" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="task-title">Açıklama</label>
+                                            @Html.EditorFor(model => model.TaskContent, new { htmlAttributes = new { @class = "form-control form-control-light", @placeholder = "Açıklama" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
+                                         data-upload-preview-template="#uploadPreviewTemplate">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple />
+                                        </div>
+                                        <div class="dz-message needsclick">
+                                            <i class="h1 text-muted dripicons-cloud-upload"></i>
+                                            <h3>Dosya Yükle</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone-previews mt-3" id="file-previews"></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="task-title">Personeller</label>
+                                            @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control form-control-ligh" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="task-priority">Son Tarih</label>
+                                            @Html.TextBoxFor(x => x.EndDate, "{0:d MMM yyyy}", new { @type = "datetime", @class = "form-control form-control-light", @data_provide = "datepicker", @data_date_format = "d-M-yyyy" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="task-priority">Öncekikli</label>
+                                            <br />
+                                            @Html.EditorFor(model => model.IsPriority, new { @class = "custom-control-input", @id = "customCheckcolor4" })
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary">Düzenle</button>
+                                    <a href="/Task/Index" class="btn btn-light">Geri Dön</a>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

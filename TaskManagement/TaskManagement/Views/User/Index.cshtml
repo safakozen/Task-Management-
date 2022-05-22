@@ -1,0 +1,65 @@
+﻿@using EntityLayer.Concrete;
+@model List<User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">İşler</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                        <a href="/User/Create" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle mr-2"></i> Yeni Personel Ekle</a>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-centered mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>İsim</th>
+                                <th>Email</th>
+                                <th>Pozisyon</th>
+                                <th style="width: 125px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><a href="#" class="text-body font-weight-bold">#@item.Id</a> </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.Status.StatusName
+                                    </td>
+
+                                    <td>
+                                        <a href="/User/Edit/@item.Id" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="/User/Delete/@item.Id" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</div>
+
+

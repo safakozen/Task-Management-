@@ -1,0 +1,95 @@
+﻿@using EntityLayer.Concrete;
+@model EntityLayer.Concrete.User
+@{
+    User LoginUser = Session["LoginUser"] as User;
+    ViewBag.Title = "İşi Düzenle";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                </ol>
+            </div>
+            <h4 class="page-title">Profil</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card text-center">
+            <div class="card-body">
+                <h4 class="mb-0 mt-2">@Model.Name</h4>
+                <p class="text-muted font-14">@Model.Status.StatusName</p>
+
+                @if (LoginUser.StatusId == 1)
+                {
+                    <a href="/User/Delete/@Model.Id"  class="btn btn-danger btn-sm mb-1">Profili Sil</a>
+                }
+                <div class="text-left mt-3">
+                    <p class="text-muted text-center mb-2 font-13"><strong>E-Posta Adresi :</strong> <span class="ml-2 ">@Model.Email</span></p>
+                </div>
+
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div> <!-- end col-->
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <div class="tab-content">
+                    @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+                    {
+                        <form>
+                            <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle mr-1"></i> Profil Bilgileri</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="firstname">İsim</label>
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="useremail">Email Adresi</label>
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="userpassword">Şifre</label>
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            @if (LoginUser.StatusId == 1)
+                            {
+                                <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building mr-1"></i>YETKİ</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="useremail">Yetki</label>
+                                            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
+                            }
+
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Kaydet</button>
+                            </div>
+                        </form>
+                    }
+                </div> <!-- end tab-content -->
+            </div> <!-- end card body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+</div>

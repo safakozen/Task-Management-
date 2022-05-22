@@ -1,0 +1,72 @@
+﻿@model EntityLayer.Concrete.User
+@{
+    ViewBag.Title = "Yeni Personel";
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+            </div>
+            <h4 class="page-title">Yeni Personel</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("Create", "User", FormMethod.Post))
+                        {
+                            <form>
+                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle mr-1"></i> Personel Bilgileri</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="firstname">İsim</label>
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="useremail">Email Adresi</label>
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userpassword">Şifre</label>
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row -->
+                                <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building mr-1"></i>YETKİ</h5>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="useremail">Yetki</label>
+                                            @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div> <!-- end row -->
+                                <div class="text-right">
+                                    <a href="/User/Index" class="btn btn-light">Geri Dön</a>
+                                    <button type="submit" class="btn btn-primary">Oluştur</button>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
