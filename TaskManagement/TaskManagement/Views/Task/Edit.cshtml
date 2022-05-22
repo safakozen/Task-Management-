@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        @using (Html.BeginForm("Edit", "Task", FormMethod.Post))
+                        @using (Html.BeginForm("Edit", "Task", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             <form>
                                 <div class="row">
@@ -31,13 +31,6 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="task-priority2">İş Durumu</label>
-
-                                            @*@Html.DropDownList("MySkills", new List<SelectListItem>
-                                            {
-                                               new SelectListItem{ Text="ASP.NET MVC", Value = "1" },
-                                            })*@
-
-
                                             @Html.DropDownList("StatusId", null, htmlAttributes: new { @class = "form-control form-control-ligh" })
                                         </div>
                                     </div>
@@ -56,20 +49,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div action="/" method="post" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews"
-                                         data-upload-preview-template="#uploadPreviewTemplate">
-                                        <div class="fallback">
-                                            <input name="file" type="file" multiple />
-                                        </div>
-                                        <div class="dz-message needsclick">
-                                            <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                            <h3>Dosya Yükle</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="task-title">Açıklama</label>
+                                            @Html.TextBoxFor(m => m.DocumentFile, new { type = "file", name = "Files" })
                                         </div>
                                     </div>
-                                    <div class="dropzone-previews mt-3" id="file-previews"></div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="task-title">Dosya</label>
+                                            <embed type="application/pdf" src="~/UploadedFiles/@Model.DocumentFile" class="form-control" style="height:500px" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">

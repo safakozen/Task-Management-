@@ -26,8 +26,7 @@ namespace EntityLayer.Concrete
 
         public DateTime EndDate { get; set; }
         public bool IsDelete { get; set; }
-
-        //public File DocumentFile { get; set; }
+        public string DocumentFile { get; set; }
         public int UserId { get; set; }
         public virtual User User { get; set; }
         public int StatusId { get; set; }

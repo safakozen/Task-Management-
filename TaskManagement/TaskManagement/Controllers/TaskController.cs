@@ -6,6 +6,7 @@ using EntityLayer.Concrete;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -76,13 +77,26 @@ namespace TaskManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(EntityLayer.Concrete.Task model)
+        public ActionResult Create(EntityLayer.Concrete.Task model, HttpPostedFileBase DocumentFile)
         {
             TaskValidator taskValidator = new TaskValidator();
             ValidationResult results = taskValidator.Validate(model);
             if (results.IsValid)
             {
                 User LoginUser = Session["LoginUser"] as User;
+
+                if (DocumentFile.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(DocumentFile.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    DocumentFile.SaveAs(_path);
+                    model.DocumentFile = _FileName;
+                }
+                else
+                {
+                    model.DocumentFile = null;
+                }
+
                 model.IsDelete = false;
                 model.CreatedUserId = LoginUser.Id;
                 _taskManager.CreateTask(model);
@@ -92,7 +106,7 @@ namespace TaskManagement.Controllers
                 body.AppendLine("E-Mail Adresi: " + user.Email);
                 body.AppendLine("Task Adı: " + model.Title);
                 body.AppendLine("Task İçerik: " + model.TaskContent);
-                body.AppendLine("Taskınız " + LoginUser.Name+ " Tarafından Size Atanmıştır.");
+                body.AppendLine("Taskınız " + LoginUser.Name + " Tarafından Size Atanmıştır.");
                 MailSender.MailSend(user.Email, body.ToString());
 
 
@@ -126,7 +140,7 @@ namespace TaskManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(EntityLayer.Concrete.Task model)
+        public ActionResult Edit(EntityLayer.Concrete.Task model, HttpPostedFileBase DocumentFile)
         {
             TaskValidator taskValidator = new TaskValidator();
             ValidationResult results = taskValidator.Validate(model);
@@ -139,6 +153,14 @@ namespace TaskManagement.Controllers
                     ViewBag.StatusId = new SelectList(_statusManager.GetStatusList().Where(x => x.StatusType.Id == 2), "Id", "StatusName", model.StatusId);
                     ViewBag.UrgencyStatusId = new SelectList(_urgencyStatusManager.GetUrgencyStatusList(), "Id", "Name", model.UrgencyStatusId);
                     ViewBag.UserId = new SelectList(_userManager.GetUserList().Where(x => x.StatusId == 3).ToList(), "Id", "Name", model.UserId);
+
+                    if (DocumentFile.ContentLength > 0)
+                    {
+                        string _FileName = Path.GetFileName(DocumentFile.FileName);
+                        string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                        DocumentFile.SaveAs(_path);
+                        task.DocumentFile = _FileName;
+                    }
                     task.Title = model.Title;
                     task.TaskContent = model.TaskContent;
                     task.IsPriority = model.IsPriority;
